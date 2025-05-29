@@ -1,9 +1,11 @@
-function App() {
+import { Header } from './components/Header'
+import { MainContent } from './components/MainContent'
+
+export const App = () => {
   return (
     <>
-      <h1>_Survey</h1>
+      <Header />
+      <MainContent />
     </>
   )
 }
-
-export default App

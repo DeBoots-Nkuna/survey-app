@@ -1,0 +1,38 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* body element */
+body {
+  padding: 30px 70px;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* header component styles */
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 4rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+}
+.text-logo {
+  font-weight: 900;
+  font-size: 20px;
+}
+
+/* MainContent component styles */
+
+.main-content {
+  padding: 60px 10px;
+}
