@@ -36,3 +36,64 @@ body {
 .main-content {
   padding: 60px 10px;
 }
+
+/* form section styles */
+
+.personal-details {
+  display: flex;
+  gap: 10rem;
+}
+
+.favorite-food {
+  margin: 35px 0 40px 0;
+  display: flex;
+  gap: 5.6rem;
+}
+
+.favorite-food input {
+  margin-right: 5px;
+}
+
+.favorite-food label {
+  margin-right: 16px;
+}
+
+.favorite-food-options label {
+  font-size: 14px;
+}
+
+.rate-table {
+  border: 1px solid #000;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.rate-table > thead > th {
+  font-weight: normal;
+  font-family: inherit;
+  text-align: center;
+  border: 1px solid #000;
+  background: lightgrey;
+  padding: 4px 0;
+}
+
+.rate-table > tbody > tr > td {
+  text-align: center;
+  border: 1px solid #439addfd;
+  padding: 2px 0;
+}
+
+.rate-table > tbody > tr > td > input {
+  color: #439addfd;
+}
+
+.form-submit-btn {
+  width: 100px;
+  display: block;
+  margin: 30px auto;
+  padding: 6px 18px;
+  color: white;
+  font-family: inherit;
+  border: none;
+  background: #439addfd;
+}
