@@ -1,13 +1,57 @@
+import { useNavigate } from 'react-router-dom'
+
 export const SurveyForm = () => {
+  const navigate = useNavigate()
+
+  const handleFormSubmit = (formData) => {
+    //collecting user data
+
+    const person = {
+      fullName: formData.get('fullNames'),
+      email: formData.get('email'),
+      dateOfBirth: formData.get('dateOfBirth'),
+      contactNumber: formData.get('contactNumber'),
+    }
+    //validating user age
+    const age =
+      new Date.getFullYear() - new Date(person.dateOfBirth).getFullYear()
+
+    if (age < 5 || age > 120) {
+      alert('Age must be between 5 and 120.')
+      return
+    }
+
+    let favMeals = formData.getAll('favoriteFood')
+
+    let entertainmentRating = {
+      movies: formData.get('question1'),
+      radio: formData.get('question2'),
+      eatOut: formData.get('question3'),
+      tv: formData.get('question4'),
+    }
+
+    // storing data
+    const surveyData = {
+      personalDetails: person,
+      favoriteFood: favMeals,
+      rating: entertainmentRating,
+    }
+
+    //passing data
+    navigate('/result', { state: { surveyData } })
+
+    console.log('Data collected' + surveyData)
+  }
+
   return (
-    <form>
+    <form action={handleFormSubmit}>
       {/* personal details section */}
       <section className="personal-details">
         <p>Personal Details: </p>
         <div>
-          <label htmlFor="fullName"> Full Names</label>
+          <label htmlFor="fullNames"> Full Names</label>
           <br />
-          <input type="text" id="fullName" name="fullName" required />
+          <input type="text" id="fullNames" name="fullNames" required />
           <br />
           <label html="email">Email</label>
           <br />
@@ -15,7 +59,7 @@ export const SurveyForm = () => {
           <br />
           <label htmlFor="dateOfBirth">Date of Birth</label>
           <br />
-          <input type="data" id="dateOfBirth" name="dateOfBirth" required />
+          <input type="date" id="dateOfBirth" name="dateOfBirth" required />
           <br />
           <label htmlFor="contactNumber">Contact Number</label>
           <br />
