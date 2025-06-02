@@ -13,8 +13,10 @@ export const SurveyForm = () => {
       contactNumber: formData.get('contactNumber'),
     }
     //validating user age
-    const age =
-      new Date.getFullYear() - new Date(person.dateOfBirth).getFullYear()
+    const currentDate = new Date()
+    const userBirthDate = new Date(person.dateOfBirth)
+
+    const age = currentDate.getFullYear() - userBirthDate.getFullYear()
 
     if (age < 5 || age > 120) {
       alert('Age must be between 5 and 120.')
@@ -23,11 +25,17 @@ export const SurveyForm = () => {
 
     let favMeals = formData.getAll('favoriteFood')
 
+    //checking if user checked atleast one box
+    if (favMeals.length === 0) {
+      alert('Please select at least one favorite meal.')
+      return
+    }
+
     let entertainmentRating = {
-      movies: formData.get('question1'),
-      radio: formData.get('question2'),
-      eatOut: formData.get('question3'),
-      tv: formData.get('question4'),
+      movies: Number(formData.get('question1')),
+      radio: Number(formData.get('question2')),
+      eatOut: Number(formData.get('question3')),
+      tv: Number(formData.get('question4')),
     }
 
     // storing data
@@ -37,10 +45,10 @@ export const SurveyForm = () => {
       rating: entertainmentRating,
     }
 
-    //passing data
-    navigate('/result', { state: { surveyData } })
+    //passing data [ static data testing ]
+    navigate('/results', { state: { surveyData } })
 
-    console.log('Data collected' + surveyData)
+    console.log('Survey Data: ', JSON.stringify(surveyData, null, 2))
   }
 
   return (

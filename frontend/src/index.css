@@ -50,11 +50,22 @@ body {
   padding: 60px 10px;
 }
 
-/* form section styles */
+/* SurveyForm Component styles */
 
 .personal-details {
   display: flex;
   gap: 10rem;
+}
+
+.personal-details > div > label {
+  font-size: 15px;
+}
+
+.personal-details > div > input {
+  width: 220px;
+  padding: 4px;
+  border: 1px solid #439addfd;
+  margin: 2px 0 14px 0;
 }
 
 .favorite-food {
@@ -113,7 +124,7 @@ body {
 }
 /* results component style */
 
-main > h1 {
+.result-title {
   margin: 4% 0 6% 0;
   text-align: center;
   font-weight: 500;
