@@ -6,10 +6,10 @@ export const NavBar = () => {
       <h1 className="text-logo">_Surveys</h1>
       <nav>
         <ul className="nav-list">
-          <NavLink className="nav-link" to="/">
+          <NavLink to="/">
             <li>FILL OUT SURVEY</li>
           </NavLink>
-          <NavLink className="nav-link" to="/results">
+          <NavLink to="/results">
             <li>VIEW SURVEY RESULTS</li>
           </NavLink>
         </ul>

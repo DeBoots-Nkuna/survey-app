@@ -3,7 +3,6 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
-  color: #000;
 }
 
 /* body element */
@@ -33,7 +32,13 @@ body {
 
 .nav-list a {
   text-decoration: none;
+  color: #000;
 }
+
+.nav-list a.active {
+  color: #439addfd;
+}
+
 .text-logo {
   font-weight: 900;
   font-size: 20px;
