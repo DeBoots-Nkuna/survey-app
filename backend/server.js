@@ -1,11 +1,15 @@
 import { apiRouter } from './routes/surveyRoutes.js'
 import { connectionPool } from './config/dbConnection.js'
 import express from 'express'
-// import cors from 'cors'
+import cors from 'cors'
 
 //setting up server
 const app = express()
-
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+  })
+)
 const PORT = 8000
 
 //setting up database connection
@@ -17,7 +21,6 @@ try {
   console.log('Connection error : ', error)
 }
 
-// app.use(cors)
 app.use(express.json())
 
 //registering api routes

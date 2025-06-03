@@ -1,22 +1,28 @@
 import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { submitSurveyForm } from '../utils/submitSurvey.js'
 
 export const SurveyForm = () => {
   const navigate = useNavigate()
 
+  const [submitting, setSubmitting] = useState(false)
+
   const handleFormSubmit = (formData) => {
-    //collecting user data
+    const fullName = formData.get('fullNames')
+    const email = formData.get('email')
+    const dateOfBirth = formData.get('dateOfBirth')
+    const contactNumber = formData.get('contactNumber')
 
-    const person = {
-      fullName: formData.get('fullNames'),
-      email: formData.get('email'),
-      dateOfBirth: formData.get('dateOfBirth'),
-      contactNumber: formData.get('contactNumber'),
+    //checking for blank input fields in personal details
+    if (!fullName || !email || !dateOfBirth || !contactNumber) {
+      alert('Please fill in all personal details')
     }
-    //validating user age
-    const currentDate = new Date()
-    const userBirthDate = new Date(person.dateOfBirth)
 
-    const age = currentDate.getFullYear() - userBirthDate.getFullYear()
+    //validating if user's age is within range NOT < 5 and NOT > 120
+    const currentDate = new Date()
+    const birthYear = new Date(dateOfBirth)
+
+    const age = currentDate.getFullYear() - birthYear.getFullYear()
 
     if (age < 5 || age > 120) {
       alert('Age must be between 5 and 120.')
@@ -25,30 +31,25 @@ export const SurveyForm = () => {
 
     let favMeals = formData.getAll('favoriteFood')
 
-    //checking if user checked atleast one box
+    //checking if user checked at least one check box
     if (favMeals.length === 0) {
       alert('Please select at least one favorite meal.')
       return
     }
 
-    let entertainmentRating = {
-      movies: Number(formData.get('question1')),
-      radio: Number(formData.get('question2')),
-      eatOut: Number(formData.get('question3')),
-      tv: Number(formData.get('question4')),
+    //checking if user selected a rating for each question
+    const movies = Number(formData.get('question1'))
+    const radio = Number(formData.get('question2'))
+    const eatOut = Number(formData.get('question3'))
+    const tv = Number(formData.get('question4'))
+
+    if (!movies || !radio || !eatOut || !tv) {
+      alert('please answer all rating questions.')
+      return
     }
 
-    // storing data
-    const surveyData = {
-      personalDetails: person,
-      favoriteFood: favMeals,
-      rating: entertainmentRating,
-    }
-
-    //passing data [ static data testing ]
-    navigate('/results', { state: { surveyData } })
-
-    console.log('Survey Data: ', JSON.stringify(surveyData, null, 2))
+    //calling submit form helper function to make a post request to the backend
+    submitSurveyForm(formData, navigate)
   }
 
   return (
