@@ -7,4 +7,4 @@ export const apiRouter = express.Router()
 
 //POST endpoint /api/surveys
 apiRouter.post('/', saveSurveyData)
-apiRouter.get('/results', getAllSurvey)
+apiRouter.get('/', getAllSurvey)

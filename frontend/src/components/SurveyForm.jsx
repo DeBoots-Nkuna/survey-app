@@ -5,11 +5,8 @@ import { MessageModal } from './modal/MessageModal.jsx'
 import { Loader } from './loader/Loader.jsx'
 
 export const SurveyForm = () => {
-  // form submit state values
+  //state values
   const [isloading, setIsLoading] = useState(false)
-  const [successMessage, setSuccessMessage] = useState('')
-
-  //message modal state values
   const [modalMessage, setModalMessage] = useState('')
   const [showModal, setShowModal] = useState(false)
 
@@ -22,7 +19,7 @@ export const SurveyForm = () => {
   ]
   const ratingValues = [1, 2, 3, 4, 5]
 
-  // handle submit survey method
+  // handle form submit method
   const handleFormSubmit = async (formData) => {
     //calling method to validate inputs
     const errorMessage = validateSurveyForm(formData)
@@ -44,7 +41,6 @@ export const SurveyForm = () => {
         setIsLoading(false)
 
         if (response?.message) {
-          setSuccessMessage(response.message)
           setModalMessage(response.message)
         } else {
           setModalMessage('Survey submitted, but no message returned.')

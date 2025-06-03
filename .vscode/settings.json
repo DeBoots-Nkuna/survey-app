@@ -10,7 +10,7 @@
       "port": 3306,
       "driver": "MySQL",
       "name": "Local MySQL",
-      "database": "mysql",
+      "database": "survey_db",
       "username": "root",
       "password": "DeBoots@22",
       "connectionTimeout": 10000

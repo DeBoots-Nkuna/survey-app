@@ -1,27 +1,52 @@
-import { useLocation } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { analyzeSurveyData } from '../utils/analyzeSurveyData.js'
+import { fetchSurveyData } from '../utils/fetchSurveyData.js'
+import { Loader } from '../components/loader/Loader.jsx'
 
 export const Result = () => {
-  let surveyData = ''
-  //retrieving data
-  // const location = useLocation()
-  // const surveyData = location.state?.surveyData
+  //data state values
+  // const [surveyData, setSurveyData] = useState(null)
+  const [analyzedData, setAnalyzedData] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
-  // const {
-  //   personalDetails: person,
-  //   favoriteFood: meals,
-  //   rating: hobbies,
-  // } = surveyData
+  useEffect(() => {
+    const getData = async () => {
+      setIsLoading(true)
 
-  // console.log(JSON.stringify(person, null, 2))
-  // console.log(meals)
-  // console.log(JSON.stringify(hobbies, null, 2))
+      //calling method to make get request
+      const data = await fetchSurveyData()
+
+      if (data && data.length > 0) {
+        console.log('data from db: ', data)
+
+        //calling method to analyze data
+        const result = analyzeSurveyData(data)
+
+        console.log('analyzed data: ', result)
+        //updating state with retrieved data
+        // setSurveyData(data)
+        setAnalyzedData(result)
+      } else {
+        setAnalyzedData(null)
+      }
+
+      //ending loading display after processing
+      setTimeout(() => setIsLoading(false), 1000)
+    }
+
+    //calling getData method
+    getData()
+  }, [])
 
   return (
     <>
-      {surveyData ? (
+      {/* loading */}
+      {isLoading ? (
+        <Loader />
+      ) : analyzedData ? (
         <main>
           <h1 className="result-title">Survey Results</h1>
-          {/* topic section */}
+          {/* titles section */}
           <section className="result-container">
             <section>
               <div>
@@ -45,22 +70,23 @@ export const Result = () => {
             {/* results section */}
             <section>
               <div>
-                <p># total average</p>
-                <p>#max age</p>
-                <p>#min age</p>
+                <p>{analyzedData.totalSurvey}</p>
+                <p>{analyzedData.averageAge}</p>
+                <p>{analyzedData.oldestAge}</p>
+                <p>{analyzedData.youngestAge}</p>
               </div>
 
               <div>
-                <p># % Pizza</p>
-                <p># % Pasta</p>
-                <p># % Pap and Wors</p>
+                <p>{analyzedData.pizzaPercentage}%</p>
+                <p>{analyzedData.pastaPercentage}%</p>
+                <p>{analyzedData.papAndWorsPercentage}%</p>
               </div>
 
               <div>
-                <p>#average of rating</p>
-                <p>#average of rating</p>
-                <p>#average of rating</p>
-                <p>#average of rating</p>
+                <p>{analyzedData.averageMovies}</p>
+                <p>{analyzedData.averageRadio}</p>
+                <p>{analyzedData.averageEatOut}</p>
+                <p>{analyzedData.averageTv}</p>
               </div>
             </section>
           </section>
