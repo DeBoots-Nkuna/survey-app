@@ -1,55 +1,31 @@
-import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { submitSurveyForm } from '../utils/submitSurvey.js'
+import { validateSurveyForm } from '../utils/validateSurveyForm.js'
 
 export const SurveyForm = () => {
-  const navigate = useNavigate()
+  // form submit state avlues
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitSuccess, setSubmitSuccess] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
 
-  const [submitting, setSubmitting] = useState(false)
+  //question array to help create jsx elements
+  const ratingQuestions = [
+    { name: 'question1', label: 'I like to watch movies' },
+    { name: 'question2', label: 'I like to listen to radio' },
+    { name: 'question3', label: 'I like to eat out' },
+    { name: 'question4', label: 'I like to watch TV' },
+  ]
+  const ratingValues = [1, 2, 3, 4, 5]
 
   const handleFormSubmit = (formData) => {
-    const fullName = formData.get('fullNames')
-    const email = formData.get('email')
-    const dateOfBirth = formData.get('dateOfBirth')
-    const contactNumber = formData.get('contactNumber')
+    //calling method to validate form inputs
+    const errorMessage = validateSurveyForm(formData)
 
-    //checking for blank input fields in personal details
-    if (!fullName || !email || !dateOfBirth || !contactNumber) {
-      alert('Please fill in all personal details')
+    if (errorMessage) {
+      alert(errorMessage)
     }
-
-    //validating if user's age is within range NOT < 5 and NOT > 120
-    const currentDate = new Date()
-    const birthYear = new Date(dateOfBirth)
-
-    const age = currentDate.getFullYear() - birthYear.getFullYear()
-
-    if (age < 5 || age > 120) {
-      alert('Age must be between 5 and 120.')
-      return
-    }
-
-    let favMeals = formData.getAll('favoriteFood')
-
-    //checking if user checked at least one check box
-    if (favMeals.length === 0) {
-      alert('Please select at least one favorite meal.')
-      return
-    }
-
-    //checking if user selected a rating for each question
-    const movies = Number(formData.get('question1'))
-    const radio = Number(formData.get('question2'))
-    const eatOut = Number(formData.get('question3'))
-    const tv = Number(formData.get('question4'))
-
-    if (!movies || !radio || !eatOut || !tv) {
-      alert('please answer all rating questions.')
-      return
-    }
-
     //calling submit form helper function to make a post request to the backend
-    submitSurveyForm(formData, navigate)
+    submitSurveyForm(formData)
   }
 
   return (
@@ -110,78 +86,27 @@ export const SurveyForm = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td className="rate-options">I like to watch movies</td>
-            <td>
-              <input type="radio" name="question1" value="1" required />
-            </td>
-            <td>
-              <input type="radio" name="question1" value="2" required />
-            </td>
-            <td>
-              <input type="radio" name="question1" value="3" required />
-            </td>
-            <td>
-              <input type="radio" name="question1" value="4" required />
-            </td>
-            <td>
-              <input type="radio" name="question1" value="5" required />
-            </td>
-          </tr>
-          <tr>
-            <td className="rate-options">I like to listen to radio</td>
-            <td>
-              <input type="radio" name="question2" value="1" required />
-            </td>
-            <td>
-              <input type="radio" name="question2" value="2" required />
-            </td>
-            <td>
-              <input type="radio" name="question2" value="3" required />
-            </td>
-            <td>
-              <input type="radio" name="question2" value="4" required />
-            </td>
-            <td>
-              <input type="radio" name="question2" value="5" required />
-            </td>
-          </tr>
-          <tr>
-            <td className="rate-options">I like to eat out</td>
-            <td>
-              <input type="radio" name="question3" value="1" required />
-            </td>
-            <td>
-              <input type="radio" name="question3" value="2" required />
-            </td>
-            <td>
-              <input type="radio" name="question3" value="3" required />
-            </td>
-            <td>
-              <input type="radio" name="question3" value="4" required />
-            </td>
-            <td>
-              <input type="radio" name="question3" value="5" required />
-            </td>
-          </tr>
-          <tr>
-            <td className="rate-options">I like to watch TV</td>
-            <td>
-              <input type="radio" name="question4" value="1" required />
-            </td>
-            <td>
-              <input type="radio" name="question4" value="2" required />
-            </td>
-            <td>
-              <input type="radio" name="question4" value="3" required />
-            </td>
-            <td>
-              <input type="radio" name="question4" value="4" required />
-            </td>
-            <td>
-              <input type="radio" name="question4" value="5" required />
-            </td>
-          </tr>
+          {/* rendering rating questions */}
+          {ratingQuestions.map((question) => {
+            return (
+              <tr key={question.name}>
+                <td className="rate-options">{question.label}</td>
+                {/* inner map to render radio buttons */}
+                {ratingValues.map((value) => {
+                  return (
+                    <td key={value}>
+                      <input
+                        type="radio"
+                        name={question.name}
+                        value={value}
+                        required
+                      />
+                    </td>
+                  )
+                })}
+              </tr>
+            )
+          })}
         </tbody>
       </table>
       {/* submit button */}

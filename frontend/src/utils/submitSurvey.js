@@ -1,4 +1,4 @@
-export async function submitSurveyForm(formData, navigate) {
+export async function submitSurveyForm(formData) {
   //building survey data object
   const surveyData = {
     fullName: formData.get('fullNames'),
@@ -31,9 +31,6 @@ export async function submitSurveyForm(formData, navigate) {
 
     //testing console
     console.log('Response collected: ', result)
-
-    //navigating to results page
-    navigate('/results')
   } catch (error) {
     console.error('Submitting of form failed: ', error)
     alert('Failed to submit survey.')
