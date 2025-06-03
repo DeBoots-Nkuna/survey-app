@@ -36,7 +36,7 @@ body {
 }
 
 .nav-list a.active {
-  color: #439addfd;
+  color: #51a6fc;
 }
 
 .text-logo {
@@ -64,7 +64,7 @@ body {
 .personal-details > div > input {
   width: 220px;
   padding: 4px;
-  border: 1px solid #439addfd;
+  border: 1px solid #96caff;
   margin: 2px 0 14px 0;
 }
 
@@ -74,16 +74,23 @@ body {
   gap: 5.6rem;
 }
 
-.favorite-food input {
+.favorite-food input[type='checkbox'] {
   margin-right: 5px;
 }
 
 .favorite-food label {
-  margin-right: 16px;
+  margin-right: 17px;
 }
 
 .favorite-food-options label {
-  font-size: 14px;
+  font-size: 0.8rem;
+}
+
+/* table styles */
+
+.rate-caption {
+  font-size: 0.8rem;
+  padding: 5px 0 16px 0;
 }
 
 .rate-table {
@@ -96,19 +103,16 @@ body {
   font-weight: normal;
   font-family: inherit;
   text-align: center;
-  border: 1px solid #000;
+  border: 2px solid #000;
   background: lightgrey;
-  padding: 4px 4px;
+  padding: 6px;
 }
 
 .rate-table > tbody > tr > td {
   text-align: center;
-  border: 1px solid #439addfd;
+  border: 1px solid #86c1fb;
   padding: 2px 0;
-}
-
-.rate-table > tbody > tr > td > input {
-  color: #439addfd;
+  width: 200px;
 }
 
 .form-submit-btn {
@@ -119,7 +123,7 @@ body {
   color: white;
   font-family: inherit;
   border: none;
-  background: #439addfd;
+  background: #51a6fc;
   cursor: pointer;
 }
 
@@ -148,4 +152,27 @@ body {
 .error-main {
   text-align: center;
   margin-top: 4rem;
+}
+
+/* checkboxes and radio button styles*/
+input[type='checkbox'] {
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  border: 1px solid #80c0ff;
+  border-radius: 2px;
+}
+input[type='radio'] {
+  width: 19px;
+  height: 19px;
+  border: 1px solid #80c0ff;
+  border-radius: 50%;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
 }

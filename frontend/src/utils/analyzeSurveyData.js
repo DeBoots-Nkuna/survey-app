@@ -26,13 +26,13 @@ export const analyzeSurveyData = (dataSurveys) => {
 
   //filtering out favorite food empty strings
   const pizzaFavs = dataSurveys.filter((entry) => {
-    entry.favorite_foods?.toLowerCase().includes('pizza')
+    return entry.favorite_foods?.toLowerCase().includes('pizza')
   })
   const pastaFavs = dataSurveys.filter((entry) => {
-    entry.favorite_foods?.toLowerCase().includes('pasta')
+    return entry.favorite_foods?.toLowerCase().includes('pasta')
   })
   const papAndWorsFavs = dataSurveys.filter((entry) => {
-    entry.favorite_foods?.toLowerCase().includes('pap and wors')
+    return entry.favorite_foods?.toLowerCase().includes('pap and wors')
   })
 
   const pizzaPercentage = (pizzaFavs.length / totalSurveys).toFixed(1)

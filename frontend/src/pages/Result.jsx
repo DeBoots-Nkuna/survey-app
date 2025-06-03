@@ -92,7 +92,7 @@ export const Result = () => {
           </section>
         </main>
       ) : (
-        <h1 className="result-title">No Survey Data Available.</h1>
+        <h1 className="result-title">No Surveys Available.</h1>
       )}
     </>
   )

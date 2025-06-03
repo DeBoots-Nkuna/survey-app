@@ -21,7 +21,7 @@ export const SurveyForm = () => {
 
   // handle form submit method
   const handleFormSubmit = async (formData) => {
-    //calling method to validate inputs
+    //validating other input fields when age range is met
     const errorMessage = validateSurveyForm(formData)
 
     if (errorMessage) {
@@ -124,6 +124,7 @@ export const SurveyForm = () => {
             />
             <label htmlFor="papAndWors">Pap and Wors</label>
             <input
+              className="check-boxes"
               type="checkbox"
               id="other"
               name="favoriteFood"
@@ -132,7 +133,10 @@ export const SurveyForm = () => {
             <label htmlFor="other">Other</label>
           </div>
         </section>
-
+        <p className="rate-caption">
+          Please rate your level of agreement on a scale from 1 to 5, with 1
+          being "strongly agree" and 5 being "strongly disagree."
+        </p>
         {/* Rating section */}
         <table className="rate-table">
           <thead>
@@ -150,7 +154,16 @@ export const SurveyForm = () => {
             {ratingQuestions.map((question) => {
               return (
                 <tr key={question.name}>
-                  <td className="rate-options">{question.label}</td>
+                  <td
+                    style={{
+                      textAlign: 'justify',
+                      paddingLeft: '8px',
+                      fontSize: '15px',
+                      width: '200px',
+                    }}
+                  >
+                    {question.label}
+                  </td>
                   {/* Inner map to render radio buttons */}
                   {ratingValues.map((value) => {
                     return (
