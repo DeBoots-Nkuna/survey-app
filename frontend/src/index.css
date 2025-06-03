@@ -122,8 +122,8 @@ body {
   background: #439addfd;
   cursor: pointer;
 }
-/* results component style */
 
+/* results component style */
 .result-title {
   margin: 4% 0 6% 0;
   text-align: center;
@@ -144,21 +144,8 @@ body {
   margin-bottom: 15px;
 }
 
-/* popup and loader styles */
-
-/* .loader {
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 1rem;
+/* Error page styles */
+.error-main {
   text-align: center;
-  border-radius: 5px;
+  margin-top: 4rem;
 }
-
-.popup {
-  background: #e6ffee;
-  padding: 1rem;
-  border: 2px solid #439addfd;
-  border-radius: 8px;
-  margin-top: 10px;
-  text-align: center;
-} */
