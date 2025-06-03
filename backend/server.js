@@ -25,6 +25,11 @@ app.use(express.json())
 
 //registering api routes
 app.use('/api/surveys', apiRouter)
+// handling unknown routes
+app.use((req, res) => {
+  res.statusCode = 404
+  res.json({ message: 'Endpoint not found.' })
+})
 
 app.listen(PORT, () =>
   console.log(`Server running at http://localhost:${PORT}`)
