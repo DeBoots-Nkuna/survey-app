@@ -1,14 +1,19 @@
 import { useState } from 'react'
 import { submitSurveyForm } from '../utils/submitSurvey.js'
 import { validateSurveyForm } from '../utils/validateSurveyForm.js'
+import { MessageModal } from './modal/MessageModal.jsx'
+import { Loader } from './loader/Loader.jsx'
 
 export const SurveyForm = () => {
-  // form submit state avlues
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitSuccess, setSubmitSuccess] = useState(false)
+  // form submit state values
+  const [isloading, setIsLoading] = useState(false)
   const [successMessage, setSuccessMessage] = useState('')
 
-  //question array to help create jsx elements
+  //message modal state values
+  const [modalMessage, setModalMessage] = useState('')
+  const [showModal, setShowModal] = useState(false)
+
+  //question and rating values arrays to help create jsx elements
   const ratingQuestions = [
     { name: 'question1', label: 'I like to watch movies' },
     { name: 'question2', label: 'I like to listen to radio' },
@@ -17,102 +22,162 @@ export const SurveyForm = () => {
   ]
   const ratingValues = [1, 2, 3, 4, 5]
 
-  const handleFormSubmit = (formData) => {
-    //calling method to validate form inputs
+  // handle submit survey method
+  const handleFormSubmit = async (formData) => {
+    //calling method to validate inputs
     const errorMessage = validateSurveyForm(formData)
 
     if (errorMessage) {
-      alert(errorMessage)
+      setModalMessage(errorMessage)
+      setShowModal(true)
+      return
     }
-    //calling submit form helper function to make a post request to the backend
-    submitSurveyForm(formData)
+    //change state to display loader UI
+    setIsLoading(true)
+
+    try {
+      //calling submit form helper function to make a post request to the backend
+      const response = await submitSurveyForm(formData)
+
+      setTimeout(() => {
+        //change state to hide loader UI
+        setIsLoading(false)
+
+        if (response?.message) {
+          setSuccessMessage(response.message)
+          setModalMessage(response.message)
+        } else {
+          setModalMessage('Survey submitted, but no message returned.')
+        }
+        setShowModal(true)
+      }, 1500)
+    } catch (error) {
+      setTimeout(() => {
+        setIsLoading(false)
+        setModalMessage('An error has occurred, ', error)
+        showModal(true)
+      }, 1500)
+    }
   }
 
   return (
-    <form action={handleFormSubmit}>
-      {/* personal details section */}
-      <section className="personal-details">
-        <p>Personal Details: </p>
-        <div>
-          <label htmlFor="fullNames"> Full Names</label>
-          <br />
-          <input type="text" id="fullNames" name="fullNames" required />
-          <br />
-          <label html="email">Email</label>
-          <br />
-          <input type="email" id="email" name="email" required />
-          <br />
-          <label htmlFor="dateOfBirth">Date of Birth</label>
-          <br />
-          <input type="date" id="dateOfBirth" name="dateOfBirth" required />
-          <br />
-          <label htmlFor="contactNumber">Contact Number</label>
-          <br />
-          <input type="tel" id="contactNumber" name="contactNumber" required />
-        </div>
-      </section>
+    <>
+      {/* error message modal*/}
+      {showModal && (
+        <MessageModal
+          message={modalMessage}
+          toggleModal={() => setShowModal(false)}
+        />
+      )}
 
-      {/* favorite food section */}
+      {/* Loading  */}
+      {isloading && <Loader />}
 
-      <section className="favorite-food">
-        <p>What is your favorite food?</p>
-        <div className="favorite-food-options">
-          <input type="checkbox" id="pizza" name="favoriteFood" value="pizza" />
-          <label htmlFor="pizza">Pizza</label>
-          <input type="checkbox" id="pasta" name="favoriteFood" value="pasta" />
-          <label htmlFor="Pasta">Pasta</label>
-          <input
-            type="checkbox"
-            id="papAndWors"
-            name="favoriteFood"
-            value="pap and wors"
-          />
-          <label htmlFor="papAndWors">Pap and Wors</label>
-          <input type="checkbox" id="other" name="favoriteFood" value="other" />
-          <label htmlFor="other">Other</label>
-        </div>
-      </section>
+      <form action={handleFormSubmit}>
+        {/* Personal details section */}
+        <section className="personal-details">
+          <p>Personal Details: </p>
+          <div>
+            <label htmlFor="fullNames"> Full Names</label>
+            <br />
+            <input type="text" id="fullNames" name="fullNames" required />
+            <br />
+            <label html="email">Email</label>
+            <br />
+            <input type="email" id="email" name="email" required />
+            <br />
+            <label htmlFor="dateOfBirth">Date of Birth</label>
+            <br />
+            <input type="date" id="dateOfBirth" name="dateOfBirth" required />
+            <br />
+            <label htmlFor="contactNumber">Contact Number</label>
+            <br />
+            <input
+              type="tel"
+              id="contactNumber"
+              name="contactNumber"
+              required
+            />
+          </div>
+        </section>
 
-      {/* rating section */}
-      <table className="rate-table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Strongly Agree</th>
-            <th>Agree</th>
-            <th>Neutral </th>
-            <th>Disagree</th>
-            <th>Strongly Disagree</th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* rendering rating questions */}
-          {ratingQuestions.map((question) => {
-            return (
-              <tr key={question.name}>
-                <td className="rate-options">{question.label}</td>
-                {/* inner map to render radio buttons */}
-                {ratingValues.map((value) => {
-                  return (
-                    <td key={value}>
-                      <input
-                        type="radio"
-                        name={question.name}
-                        value={value}
-                        required
-                      />
-                    </td>
-                  )
-                })}
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
-      {/* submit button */}
-      <button className="form-submit-btn" type="submit">
-        SUBMIT
-      </button>
-    </form>
+        {/* Favorite food section */}
+
+        <section className="favorite-food">
+          <p>What is your favorite food?</p>
+          <div className="favorite-food-options">
+            <input
+              type="checkbox"
+              id="pizza"
+              name="favoriteFood"
+              value="pizza"
+            />
+            <label htmlFor="pizza">Pizza</label>
+            <input
+              type="checkbox"
+              id="pasta"
+              name="favoriteFood"
+              value="pasta"
+            />
+            <label htmlFor="Pasta">Pasta</label>
+            <input
+              type="checkbox"
+              id="papAndWors"
+              name="favoriteFood"
+              value="pap and wors"
+            />
+            <label htmlFor="papAndWors">Pap and Wors</label>
+            <input
+              type="checkbox"
+              id="other"
+              name="favoriteFood"
+              value="other"
+            />
+            <label htmlFor="other">Other</label>
+          </div>
+        </section>
+
+        {/* Rating section */}
+        <table className="rate-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Strongly Agree</th>
+              <th>Agree</th>
+              <th>Neutral </th>
+              <th>Disagree</th>
+              <th>Strongly Disagree</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* Rendering rating questions */}
+            {ratingQuestions.map((question) => {
+              return (
+                <tr key={question.name}>
+                  <td className="rate-options">{question.label}</td>
+                  {/* Inner map to render radio buttons */}
+                  {ratingValues.map((value) => {
+                    return (
+                      <td key={value}>
+                        <input
+                          type="radio"
+                          name={question.name}
+                          value={value}
+                          required
+                        />
+                      </td>
+                    )
+                  })}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+        {/* submit button */}
+        <button className="form-submit-btn" type="submit">
+          SUBMIT
+        </button>
+      </form>
+    </>
   )
 }

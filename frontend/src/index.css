@@ -143,3 +143,22 @@ body {
 .result-container > section > div p {
   margin-bottom: 15px;
 }
+
+/* popup and loader styles */
+
+/* .loader {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.popup {
+  background: #e6ffee;
+  padding: 1rem;
+  border: 2px solid #439addfd;
+  border-radius: 8px;
+  margin-top: 10px;
+  text-align: center;
+} */

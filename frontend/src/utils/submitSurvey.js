@@ -26,13 +26,11 @@ export async function submitSurveyForm(formData) {
     if (!response.ok) {
       throw new Error(`Status ${response.status}`)
     }
-    //retrieving response
-    const result = await response.json()
-
-    //testing console
-    console.log('Response collected: ', result)
+    //collecting returned response
+    const data = await response.json()
+    return data
   } catch (error) {
     console.error('Submitting of form failed: ', error)
-    alert('Failed to submit survey.')
+    return null
   }
 }
