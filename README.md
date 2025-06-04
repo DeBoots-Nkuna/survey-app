@@ -20,10 +20,9 @@
 ## Project Structure
 
 /survey-platform
-│
-├── /client # React frontend (Vite)
-├── /server # Node.js backend (Express)
-└── README.md
+    ── /frontend # React frontend (Vite)
+    ── /backend # Node.js backend (Express)
+    ── README.md
 
 ---
 
