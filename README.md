@@ -21,35 +21,35 @@
 
 survey_app/
 
-frontend/ – React frontend (created with Vite)
+- frontend/ – React frontend (created with Vite)
 
-public/ – Static assets and index.html
+    - public/ – Static assets and index.html
 
-src/ – Source code
+    - src/ – Source code
 
-components/ – Reusable components 
+    - components/ – Reusable components 
 
-pages/ – Pages 
+    - pages/ – Pages 
 
-utils/ – Helper functions 
+    - utils/ – Helper functions 
 
-App.jsx – Root component
+    - App.jsx – Root component
 
-main.jsx – Entry point
+    - main.jsx – Entry point
 
-backend/ – Node.js + Express backend
+- backend/ – Node.js + Express backend
 
-controllers/ – Logic for API routes 
+  - controllers/ – Logic for API routes 
 
-routes/ – Express route definitions (
+    - routes/ – Express route definitions (
 
-db.js – MySQL connection setup
+     - db.js – MySQL connection setup
 
-server.js – Express server entry point
+    - server.js – Express server entry point
 
-.env – Environment config file (not committed to Git)
+    - .env – Environment config file (not committed to Git)
 
-README.md – Project documentation file
+    - README.md – Project documentation file
 
 
 
