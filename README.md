@@ -20,21 +20,21 @@
 ## Project Structure
 
 .
-├── survey_app/                           # Parent project directory
-│   ├── frontend/                         # Frontend (React with Vite)
-│   │   ├── public/                       # Public files (index.html, etc.)
-│   │   └── src/                          # Source code
-│   │       ├── components/              # Reusable UI components (Loader.jsx, MessageModal.jsx, etc.)
-│   │       ├── pages/                   # Pages like SurveyForm.jsx, Result.jsx
-│   │       ├── utils/                   # Utility functions (validateSurveyForm.js, fetchSurveyData.js, etc.)
-│   │       ├── App.jsx                  # Main App component
-│   │       └── main.jsx                 # App entry point
-│   ├── backend/                          # Backend (Node.js + Express)
-│   │   ├── controllers/                 # Controller files (postSurveyData.js, getSurveyData.js)
-│   │   ├── routes/                      # Express routes (surveyRoutes.js)
-│   │   ├── db.js                        # MySQL database connection setup
-│   │   ├── server.js                    # Entry point for the Express server
-│   │   └── .env                         # Environment variables (MySQL credentials, etc.)
+├── survey_app/                         
+│   ├── frontend/                        
+│   │   ├── public/                      
+│   │   └── src/                          
+│   │       ├── components/            
+│   │       ├── pages/                   
+│   │       ├── utils/                   
+│   │       ├── App.jsx                 
+│   │       └── main.jsx                
+│   ├── backend/                         
+│   │   ├── controllers/                 
+│   │   ├── routes/                      
+│   │   ├── db.js                        
+│   │   ├── server.js                   
+│   │   └── .env                        
 ├── README.md                             
 
 
