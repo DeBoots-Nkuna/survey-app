@@ -1,12 +1,80 @@
-# React + Vite
+# Survey Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Frontend**:
 
-## Expanding the ESLint configuration
+- React.js (created with Vite)
+- CSS
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend**
+
+- Node.js
+- Express.js
+- MySQL
+
+---
+
+## Project Structure
+
+/survey-platform
+│
+├── /client # React frontend (Vite)
+├── /server # Node.js backend (Express)
+└── README.md
+
+---
+
+## Features
+
+- Form submission with validation
+- Age eligibility check (5 to 120 years)
+- Favorite food and lifestyle questions
+
+- Result analysis with:
+  - Total survey submissions
+  - Average age
+  - Oldest and youngest participants
+  - Food preferences percentages
+  - Average rating in entertainment preferences
+  - Error handlig for 404 status
+  - Loader animations for better user experience
+
+---
+
+## How to Run the Project
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/DeBoots-Nkuna/survey-app.git
+```
+
+### 2. Setup the Backend
+
+    - cd backend
+    - npm install
+    - Create a `.env` file to place your MySQL config
+    - npm start
+
+### 3. Setup the Frontend
+
+- cd frontend
+- npm install
+- npm run dev
+
+### 4. Database setup
+
+        - create a database name : survey_db
+        - Run mysql schema provided to create the surveys table
+        - Make sure your .env file in the backend contains :
+                                                            - DB_HOST=localhost
+                                                            - DB_USER=yourusername
+                                                            - DB_PASSWORD=yourPassword
+                                                            - DB_Name=survey_db
+
+### Author
+
+- Nhlalala Nkuna

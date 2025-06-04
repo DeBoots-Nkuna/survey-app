@@ -24,7 +24,7 @@ export const saveSurveyData = async (req, res) => {
       dateOfBirth,
       contactNumber,
       favoriteFoods.join(','),
-      rating.movies,
+      rating.movie,
       rating.radio,
       rating.eatOut,
       rating.tv,
