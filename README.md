@@ -19,13 +19,39 @@
 
 ## Project Structure
 
-/survey-platform
-│
-├── /client # React frontend (Vite)
-├── /server # Node.js backend (Express)
-└── README.md
+survey_app/
 
----
+- frontend/ – React frontend (created with Vite)
+
+  - public/ – Static assets and index.html
+
+      - src/ – Source code
+
+      - components/ – Reusable components 
+
+      - pages/ – Pages 
+
+      - utils/ – Helper functions 
+
+      - App.jsx – Root component
+
+      - main.jsx – Entry point
+
+- backend/ – Node.js + Express backend
+
+    - controllers/ – Logic for API routes 
+
+    - routes/ – Express route definitions (
+
+     - db.js – MySQL connection setup
+
+    - server.js – Express server entry point
+
+    - .env – Environment config file (not committed to Git)
+
+    - README.md – Project documentation file
+
+
 
 ## Features
 
