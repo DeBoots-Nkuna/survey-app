@@ -52,6 +52,7 @@ body {
 
 /* SurveyForm Component styles */
 
+/* input fields styles - personal details */
 .personal-details {
   display: flex;
   gap: 10rem;
@@ -68,6 +69,8 @@ body {
   margin: 2px 0 14px 0;
   border-radius: 2px;
 }
+
+/* favorite food - check boxes style */
 
 .favorite-food {
   margin: 35px 0 40px 0;
@@ -115,7 +118,7 @@ body {
   padding: 2px 0;
   width: 200px;
 }
-
+/* form button style */
 .form-submit-btn {
   width: 130px;
   display: block;
@@ -164,6 +167,7 @@ input[type='radio'] {
   -moz-appearance: none;
 }
 
+/* input and radio button style */
 input[type='radio'] {
   appearance: none;
   width: 20px;

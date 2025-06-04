@@ -5,7 +5,6 @@ import { Loader } from '../components/loader/Loader.jsx'
 
 export const Result = () => {
   //data state values
-  // const [surveyData, setSurveyData] = useState(null)
   const [analyzedData, setAnalyzedData] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 

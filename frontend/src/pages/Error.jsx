@@ -9,12 +9,12 @@ export const Error = () => {
 
   // method to redirect user when visiting unknown route
   useEffect(() => {
-    //hidding error message after 3.5 seconds
+    //hidding error message after 5 seconds
     const messageTimer = setTimeout(() => {
       setShowMessage(false)
-    }, 4000)
+    }, 5000)
 
-    //redirecting user after 1.5 seconds
+    //redirecting user after 5 seconds
     const redirectTimer = setTimeout(() => {
       navigate('/')
     }, 5000)
