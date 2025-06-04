@@ -7,7 +7,7 @@ export async function submitSurveyForm(formData) {
     contactNumber: formData.get('contactNumber'),
     favoriteFoods: formData.getAll('favoriteFood'),
     rating: {
-      movies: Number(formData.get('question1')),
+      movie: Number(formData.get('question1')),
       radio: Number(formData.get('question2')),
       eatOut: Number(formData.get('question3')),
       tv: Number(formData.get('question4')),

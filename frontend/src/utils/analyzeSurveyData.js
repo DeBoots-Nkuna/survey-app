@@ -49,7 +49,7 @@ export const analyzeSurveyData = (dataSurveys) => {
     return average.toFixed(1)
   }
 
-  const averageMovies = averageRating('rate_movies')
+  const averageMovies = averageRating('rate_movie')
   const averageRadio = averageRating('rate_radio')
   const averageEatOut = averageRating('rate_eat_out')
   const averageTV = averageRating('rate_tv')
