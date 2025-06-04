@@ -64,8 +64,9 @@ body {
 .personal-details > div > input {
   width: 220px;
   padding: 4px;
-  border: 1px solid #96caff;
+  border: 2px solid #9ecefd;
   margin: 2px 0 14px 0;
+  border-radius: 2px;
 }
 
 .favorite-food {
@@ -116,13 +117,15 @@ body {
 }
 
 .form-submit-btn {
-  width: 100px;
+  width: 130px;
   display: block;
   margin: 30px auto;
-  padding: 6px 18px;
+  padding: 10px 20px;
   color: white;
   font-family: inherit;
+  font-size: 0.94rem;
   border: none;
+  border-radius: 2px;
   background: #51a6fc;
   cursor: pointer;
 }
@@ -154,25 +157,48 @@ body {
   margin-top: 4rem;
 }
 
-/* checkboxes and radio button styles*/
-input[type='checkbox'] {
-  width: 12px;
-  height: 12px;
-  cursor: pointer;
-  border: 1px solid #80c0ff;
-  border-radius: 2px;
-}
+/* removing browser default styles  */
+input[type='checkbox'],
 input[type='radio'] {
-  width: 19px;
-  height: 19px;
-  border: 1px solid #80c0ff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type='radio'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #64b1fe;
+  padding: 5px;
+  cursor: pointer;
   border-radius: 50%;
 }
 
-input[type='radio'],
 input[type='checkbox'] {
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #80c0ff;
+  padding: 5px;
   cursor: pointer;
+  position: relative;
+}
+
+/* updating style when inputs checked with custom styles*/
+
+input[type='radio']:checked {
+  background: #000 content-box;
+  border-color: #1c8cfc;
+}
+
+input[type='checkbox']:checked::before {
+  content: '';
+  position: absolute;
+  top: 0.1px;
+  left: 3px;
+  width: 4px;
+  height: 8px;
+  border: solid #51a6fc;
+  border-width: 0 4px 4px 0;
+  transform: rotate(45deg);
 }
