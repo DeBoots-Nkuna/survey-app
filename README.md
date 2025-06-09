@@ -103,4 +103,4 @@ git clone https://github.com/DeBoots-Nkuna/survey-app.git
 
 ### Author
 
-- Nhlalala Nkuna
+- DeBoots Nkuna
