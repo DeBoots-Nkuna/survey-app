@@ -1,5 +1,4 @@
 import { apiRouter } from './routes/surveyRoutes.js'
-import { connectionPool } from './config/dbConnection.js'
 import express from 'express'
 import cors from 'cors'
 
@@ -12,15 +11,6 @@ app.use(
 )
 const PORT = 8000
 
-//setting up database connection
-try {
-  const connection = await connectionPool.getConnection()
-  console.log('Connected to MySQL DB')
-  connection.release()
-} catch (error) {
-  console.log('Connection error : ', error)
-}
-
 app.use(express.json())
 
 //registering api routes
@@ -31,6 +21,7 @@ app.use((req, res) => {
   res.json({ message: 'Endpoint not found.' })
 })
 
-app.listen(PORT, () =>
+app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`)
-)
+  console.log('Survey data is stored in backend/data/surveys.json')
+})

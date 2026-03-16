@@ -82,7 +82,7 @@ export const Result = () => {
               </div>
 
               <div>
-                <p>{analyzedData.averageMovie}</p>
+                <p>{analyzedData.averageMovies}</p>
                 <p>{analyzedData.averageRadio}</p>
                 <p>{analyzedData.averageEatOut}</p>
                 <p>{analyzedData.averageTv}</p>

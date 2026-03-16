@@ -1,12 +1,10 @@
-import { connectionPool } from '../config/dbConnection.js'
+import { getAllSurveys } from '../storage/surveyStore.js'
 
 export const getAllSurvey = async (req, res) => {
   try {
-    //collecting all survey data
-    const [rows] = await connectionPool.query('SELECT * from survey')
+    const surveys = await getAllSurveys()
 
-    //returning response
-    res.json(rows)
+    res.json(surveys)
   } catch (error) {
     console.error('Error occurred while fetching surveys: ', error)
     res.statusCode = 500

@@ -50,8 +50,8 @@ export const SurveyForm = () => {
     } catch (error) {
       setTimeout(() => {
         setIsLoading(false)
-        setModalMessage('An error has occurred, ', error)
-        showModal(true)
+        setModalMessage(`An error has occurred: ${error.message}`)
+        setShowModal(true)
       }, 1500)
     }
   }

@@ -35,9 +35,9 @@ export const analyzeSurveyData = (dataSurveys) => {
     return entry.favorite_foods?.toLowerCase().includes('pap and wors')
   })
 
-  const pizzaPercentage = (pizzaFavs.length / totalSurveys).toFixed(1)
-  const pastaPercentage = (pastaFavs.length / totalSurveys).toFixed(1)
-  const papAndWorsPercentage = (papAndWorsFavs.length / totalSurveys).toFixed(1)
+  const pizzaPercentage = ((pizzaFavs.length / totalSurveys) * 100).toFixed(1)
+  const pastaPercentage = ((pastaFavs.length / totalSurveys) * 100).toFixed(1)
+  const papAndWorsPercentage = ((papAndWorsFavs.length / totalSurveys) * 100).toFixed(1)
 
   //method to calculate average rating and handling empty values
   const averageRating = (key) => {
